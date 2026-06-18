@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Истории — Flavour Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #0A0704;
+      --dark:    #0F0A05;
+      --dark2:   #160D04;
+      --dark3:   #1A0F06;
+      --gold:    #F59E0B;
+      --fire:    #E8341C;
+      --cream:   #FFF8F0;
+      --sand:    #C4A882;
+      --muted:   #7A6245;
+      --dimmed:  #3D2E1A;
+      --r-lg:    20px;
+      --r-xl:    28px;
+      --shadow-lg: 0 24px 72px rgba(0,0,0,.6);
+      --transition: all .3s;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold), var(--fire)); border-radius: 4px; }
+    ::selection { background: rgba(245,158,11,.28); color: var(--cream); }
+
+    @keyframes floatUp   { 0%,100%{transform:translateY(0)rotate(0)}  50%{transform:translateY(-18px)rotate(6deg)} }
+    @keyframes fadeUp    { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 28px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 36px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s, color .2s, border-color .2s;
+      border: none;
+      outline: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--fire));
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(245,158,11,.38);
+    }
+    .btn-primary:hover { box-shadow: 0 12px 40px rgba(245,158,11,.55); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid rgba(245,158,11,.35);
+      padding: 14px 32px;
+    }
+    .btn-ghost:hover { background: var(--gold); color: var(--dark); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: .76rem;
+      font-weight: 500;
+    }
+    .tag-gold {
+      background: rgba(245,158,11,.15);
+      border: 1px solid rgba(245,158,11,.25);
+      color: var(--gold);
+    }
+    .tag-dark {
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--cream);
+    }
+
+    .breadcrumb {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .breadcrumb a { color: var(--sand); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb .sep { color: var(--dimmed); }
+
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1.5px solid rgba(255,255,255,.14);
+      border-radius: 100px;
+      padding: 15px 24px;
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-input::placeholder { color: var(--muted); }
+    .form-input:focus { border-color: rgba(245,158,11,.5); box-shadow: 0 0 0 3px rgba(245,158,11,.1); }
+
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      padding: 18px 0;
+      transition: background .4s, backdrop-filter .4s, border-bottom .4s;
+    }
+    .navbar.scrolled {
+      background: rgba(10,7,4,.94);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(245,158,11,.12);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .nav-desktop { margin-left: auto; }
+    .logo { display: flex; align-items: baseline; gap: 4px; text-decoration: none; }
+    .logo-script { font-family: 'Dancing Script', cursive; font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .logo-serif  { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--cream); letter-spacing: .12em; line-height: 1; }
+
+    #menu__toggle { opacity: 0; position: absolute; pointer-events: none; }
+    .nav-desktop { display: flex; align-items: center; gap: 0; list-style: none; }
+    .nav-desktop > li { position: relative; }
+    .nav-desktop > li > a {
+      display: flex; align-items: center; gap: 4px;
+      padding: 10px 18px; font-size: .87rem; font-weight: 500;
+      color: var(--sand); letter-spacing: .04em; text-decoration: none;
+      cursor: pointer; transition: color .2s; white-space: nowrap;
+    }
+    .nav-desktop > li > a:hover, .nav-desktop > li > a.active { color: var(--gold); }
+    .nav-arrow { font-size: .55rem; opacity: .5; transition: transform .25s; }
+    .nav-desktop > li:hover > a > .nav-arrow { transform: rotate(180deg); opacity: 1; }
+    .nav-sub {
+      position: absolute; top: 100%; left: 0; min-width: 200px;
+      background: rgba(15,8,3,.97); border: 1px solid rgba(245,158,11,.2);
+      border-radius: 12px; padding: 8px 0;
+      opacity: 0; visibility: hidden; transform: translateY(10px);
+      transition: opacity .25s, visibility .25s, transform .25s;
+      box-shadow: 0 12px 40px rgba(0,0,0,.7); list-style: none; z-index: 1000;
+    }
+    .nav-desktop > li:hover > .nav-sub { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-sub li a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px; font-size: .82rem; color: rgba(255,248,240,.65);
+      text-decoration: none; transition: color .2s, background .2s, padding-left .2s; white-space: nowrap;
+    }
+    .nav-sub li a:hover { color: var(--gold); background: rgba(245,158,11,.08); padding-left: 26px; }
+    .nav-cta-btn {
+      margin-left: 12px; display: inline-flex; align-items: center; gap: 5px;
+      padding: 10px 22px; border-radius: 100px;
+      background: linear-gradient(135deg, var(--gold), var(--fire));
+      color: #fff; font-size: .84rem; font-weight: 600; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(245,158,11,.35); transition: transform .15s, box-shadow .15s;
+    }
+    .nav-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,158,11,.55); }
+    .nav-auth-link {
+      font-size: .82rem; color: rgba(255,248,240,.4); text-decoration: none;
+      font-family: 'Inter', sans-serif; transition: color .2s; margin-right: 6px;
+    }
+    .nav-auth-link:hover { color: var(--gold); }
+
+    .hamburger-menu { display: flex; align-items: center; margin-left: 8px; }
+    .menu__btn { display: flex; align-items: center; width: 26px; height: 26px; cursor: pointer; z-index: 1001; position: relative; }
+    .menu__btn > span, .menu__btn > span::before, .menu__btn > span::after {
+      display: block; position: absolute; width: 100%; height: 2px;
+      background: var(--cream); border-radius: 2px; transition-duration: .25s;
+    }
+    .menu__btn > span::before { content: ''; top: -8px; }
+    .menu__btn > span::after  { content: ''; top:  8px; }
+    #menu__toggle:checked ~ .menu__btn > span { transform: rotate(45deg); }
+    #menu__toggle:checked ~ .menu__btn > span::before { top: 0; transform: rotate(0); }
+    #menu__toggle:checked ~ .menu__btn > span::after { top: 0; transform: rotate(90deg); }
+    .menu__box {
+      display: block; position: fixed; visibility: hidden; top: 0; left: -100%;
+      width: min(320px, 85vw); height: 100%; margin: 0; padding: 90px 0 40px;
+      list-style: none; overflow-y: auto; background: rgba(10,7,4,.98);
+      box-shadow: 2px 0 24px rgba(0,0,0,.8); border-right: 1px solid rgba(245,158,11,.12);
+      transition-duration: .25s; z-index: 1000;
+    }
+    #menu__toggle:checked ~ .menu__box { visibility: visible; left: 0; }
+    #menu__toggle:checked ~ .menu__overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 999; }
+    .menu__item {
+      display: block; padding: 14px 32px; color: var(--sand);
+      font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 500;
+      text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.04); transition-duration: .25s;
+    }
+    .menu__item:hover { color: var(--gold); background: rgba(245,158,11,.06); padding-left: 38px; }
+    .menu__sub-toggle { display: none; }
+    .menu__sub-toggle + label {
+      display: flex; align-items: center; gap: 8px;
+      padding: 16px 32px 8px; color: var(--gold); font-family: 'Inter', sans-serif;
+      font-size: .95rem; font-weight: 600; cursor: default;
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+    .menu__sub-toggle + label::after { content: '▾'; font-size: .65rem; color: rgba(245,158,11,.5); }
+    .menu__sub { list-style: none; background: rgba(0,0,0,.2); padding: 0 0 8px; }
+    .menu__sub li a {
+      display: block; padding: 10px 32px 10px 48px; font-size: .9rem;
+      color: rgba(255,248,240,.55); font-family: 'Inter', sans-serif;
+      text-decoration: none; transition-duration: .25s;
+    }
+    .menu__sub li a:hover { color: var(--gold); padding-left: 54px; }
+
+    @media (max-width: 1024px) {
+      .nav-desktop > li > a { padding: 10px 12px; }
+    }
+    @media (max-width: 768px) {
+      .nav-cta-btn, .nav-auth-link { display: none; }
+      .nav-desktop > li > a { padding: 8px 8px; font-size: .76rem; letter-spacing: 0; }
+      .nav-arrow { display: none; }
+      .menu__box { width: min(300px, 85vw); }
+    }
+
+    .story-hero {
+      position: relative;
+      min-height: 52vh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .story-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('Images/spec.jpg') center/cover no-repeat;
+      opacity: .3;
+    }
+    .story-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--dark) 0%, rgba(10,7,4,.55) 55%, transparent 100%);
+    }
+    .story-hero-content {
+      position: relative; z-index: 2;
+      padding: 140px 0 60px;
+    }
+    .story-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--cream); margin-bottom: 16px;
+      animation: fadeUp .7s .2s ease both;
+    }
+    .story-hero p {
+      font-size: 1.05rem; color: var(--sand);
+      font-weight: 300; line-height: 1.7; max-width: 540px;
+      animation: fadeUp .7s .35s ease both;
+    }
+
+    .cat-bar {
+      background: var(--dark2);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .cat-bar .container {
+      display: flex; gap: 0;
+      overflow-x: auto; padding-bottom: 0;
+    }
+    .cat-tab {
+      padding: 18px 24px;
+      font-size: .85rem; font-weight: 500;
+      color: var(--muted); cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none;
+    }
+    .cat-tab:hover { color: var(--cream); }
+    .cat-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+    .stories-section { background: var(--dark); padding: 64px 0 96px; }
+
+    .featured-story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      margin-bottom: 56px;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      transition: transform .3s;
+    }
+    .featured-story:hover { transform: translateY(-4px); }
+
+    .featured-img-wrap { position: relative; height: 520px; }
+    .featured-img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+    .featured-story:hover .featured-img { transform: scale(1.04); }
+    .featured-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,.3), transparent);
+    }
+    .featured-badge {
+      position: absolute; top: 24px; left: 24px;
+    }
+
+    .featured-body {
+      background: var(--dark3);
+      padding: 48px 44px;
+      display: flex; flex-direction: column; justify-content: center;
+      border: 1px solid rgba(255,255,255,.05);
+      border-left: none;
+    }
+    .featured-cat {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .featured-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; line-height: 1.2;
+      color: var(--cream); margin-bottom: 16px;
+    }
+    .featured-title em { font-style: italic; color: var(--gold); }
+    .featured-excerpt {
+      font-size: .95rem; color: var(--sand);
+      line-height: 1.75; font-weight: 300;
+      margin-bottom: 28px;
+    }
+    .featured-meta {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 32px;
+    }
+    .meta-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(245,158,11,.15);
+      border: 1px solid rgba(245,158,11,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .meta-author { font-size: .85rem; font-weight: 500; color: var(--cream); }
+    .meta-date   { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .meta-read   { margin-left: auto; font-size: .78rem; color: var(--muted); white-space: nowrap; }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .story-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.06);
+      cursor: pointer;
+      transition: transform .35s, box-shadow .35s, border-color .35s;
+    }
+    .story-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 56px rgba(0,0,0,.5);
+      border-color: rgba(245,158,11,.2);
+    }
+
+    .story-img-wrap { position: relative; height: 220px; overflow: hidden; }
+    .story-img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .story-card:hover .story-img { transform: scale(1.07); }
+    .story-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,.5) 100%);
+    }
+    .story-img-cat { position: absolute; bottom: 14px; left: 14px; }
+
+    .story-body { padding: 22px 22px 24px; }
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--cream); line-height: 1.3;
+      margin-bottom: 10px;
+      transition: color .2s;
+    }
+    .story-card:hover .story-title { color: var(--gold); }
+    .story-excerpt {
+      font-size: .84rem; color: var(--muted);
+      line-height: 1.65; font-weight: 300;
+      margin-bottom: 18px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .story-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .story-author { font-size: .78rem; color: var(--muted); }
+    .story-author strong { color: var(--sand); }
+    .story-read { font-size: .75rem; color: var(--gold); font-weight: 500; }
+
+    .stories-with-sidebar {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .sidebar { display: flex; flex-direction: column; gap: 28px; }
+
+    .sidebar-widget {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--r-lg);
+      padding: 28px;
+    }
+    .sidebar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--cream); margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .popular-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      cursor: pointer; transition: var(--transition);
+    }
+    .popular-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .popular-item:hover .popular-title { color: var(--gold); }
+    .popular-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: rgba(245,158,11,.2); line-height: 1; flex-shrink: 0;
+      width: 28px;
+    }
+    .popular-title { font-size: .85rem; font-weight: 500; color: var(--cream); line-height: 1.4; transition: color .2s; }
+    .popular-meta  { font-size: .74rem; color: var(--muted); margin-top: 4px; }
+
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag-cloud-item {
+      padding: 6px 14px; border-radius: 100px;
+      font-size: .78rem; font-weight: 500; cursor: pointer;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      color: var(--sand); transition: var(--transition);
+    }
+    .tag-cloud-item:hover { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.3); color: var(--gold); }
+
+    .newsletter-widget input {
+      width: 100%; margin-bottom: 10px;
+    }
+    .newsletter-widget .btn { width: 100%; justify-content: center; }
+
+    .footer { background: var(--black); padding: 64px 0 30px; border-top: 1px solid rgba(255,255,255,.05); }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand p { font-size: .875rem; color: var(--dimmed); line-height: 1.7; font-weight: 300; max-width: 220px; margin-top: 14px; }
+    .social-links   { display: flex; gap: 10px; margin-top: 22px; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .social-btn:hover { background: rgba(245,158,11,.14); border-color: rgba(245,158,11,.3); transform: translateY(-2px); }
+    .footer-col h4  { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--cream); margin-bottom: 20px; }
+    .footer-col li  { margin-bottom: 10px; }
+    .footer-col a   { font-size: .875rem; color: var(--dimmed); font-weight: 300; transition: color .2s, padding-left .2s; }
+    .footer-col a:hover { color: var(--gold); padding-left: 4px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.04);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy { font-size: .78rem; color: var(--dimmed); font-weight: 300; }
+
+    @media (max-width: 1024px) {
+      .stories-with-sidebar { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .stories-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px)  { .featured-story { grid-template-columns: 1fr; } .featured-img-wrap { height: 300px; } }
+    @media (max-width: 768px)  { .stories-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px)  { .stories-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; text-align: center; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <span class="logo-script">Flavour</span>
+      <span class="logo-serif">ATLAS</span>
+    </a>
+    <ul class="nav-desktop">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="destinations.html">Направления <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Африка</a></li></ul>
+      </li>
+      <li><a href="story.html" class="active">Истории <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul>
+      </li>
+      <li><a href="about.html">О нас <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="about.html">Контакты</a></li></ul>
+      </li>
+    </ul>
+    <a href="auth.html" class="nav-auth-link">🔑 Войти</a>
+    <a href="booking.html" class="nav-cta-btn">Забронировать</a>
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox"/>
+      <label class="menu__btn" for="menu__toggle"><span></span></label>
+      <div class="menu__overlay" onclick="document.getElementById('menu__toggle').checked=false"></div>
+      <ul class="menu__box">
+        <li><a class="menu__item" href="index.html">🏠 Главная</a></li>
+        <li><input type="checkbox" id="sub-dest-m" class="menu__sub-toggle" checked/><label for="sub-dest-m">🗺️ Направления</label><ul class="menu__sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Лат. Америка</a></li><li><a href="destinations.html">Африка</a></li></ul></li>
+        <li><input type="checkbox" id="sub-story-m" class="menu__sub-toggle" checked/><label for="sub-story-m">✍️ Истории</label><ul class="menu__sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul></li>
+        <li><input type="checkbox" id="sub-about-m" class="menu__sub-toggle" checked/><label for="sub-about-m">👥 О нас</label><ul class="menu__sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li></ul></li>
+        <li><a class="menu__item" href="booking.html">📅 Забронировать</a></li>
+        <li><a class="menu__item" href="auth.html">🔑 Войти / Регистрация</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="story-hero">
+  <div class="container story-hero-content">
+    <div class="breadcrumb"><a href="index.html">Главная</a><span class="sep">/</span><span>Истории</span></div>
+    <div class="tag tag-gold" style="margin-bottom:16px;">✍️ Дневники гастронавтов</div>
+    <h1>Истории из <em style="color:var(--gold);font-style:italic;">поля</em></h1>
+    <p>Живые рассказы путешественников, которые исследуют мир через еду. Без ретуши, без пафоса — только честные впечатления.</p>
+  </div>
+</section>
+
+<div class="cat-bar">
+  <div class="container">
+    <button class="cat-tab active">Все истории</button>
+    <button class="cat-tab">Азия</button>
+    <button class="cat-tab">Европа</button>
+    <button class="cat-tab">Латинская Америка</button>
+    <button class="cat-tab">Рецепты</button>
+    <button class="cat-tab">Советы</button>
+    <button class="cat-tab">Рынки</button>
+  </div>
+</div>
+
+<section class="stories-section">
+  <div class="container">
+
+    <div class="featured-story">
+      <div class="featured-img-wrap">
+        <img class="featured-img" src="Images/spec.jpg" alt="Osaka Dotonbori">
+        <div class="featured-img-overlay"></div>
+        <div class="featured-badge"><span class="tag tag-gold">🔥 Главная история</span></div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-cat">Дневник гастронавта · Япония</div>
+        <h2 class="featured-title">48 часов в Осаке: как я съел <em>всё</em>, что можно</h2>
+        <p class="featured-excerpt">
+          Я прилетел в Осаку с одной целью — проверить, правда ли, что местные едят так много,
+          что придумали слово «куитаоре». Спойлер: правда. За двое суток я побывал на трёх рынках,
+          в семи ресторанах и двенадцати уличных точках. Это был лучший опыт в моей жизни.
+        </p>
+        <div class="featured-meta">
+          <div class="meta-avatar">👨‍🍳</div>
+          <div>
+            <div class="meta-author">Алексей Воронов</div>
+            <div class="meta-date">12 ноября 2025</div>
+          </div>
+          <div class="meta-read">⏱ 8 мин читать</div>
+        </div>
+        <a href="story.html" class="btn btn-primary" style="align-self:flex-start;">Читать историю →</a>
+      </div>
+    </div>
+
+    <div class="stories-with-sidebar">
+
+      <div>
+        <div class="stories-grid">
+
+          <div class="story-card">
+            <div class="story-img-wrap">
+              <img class="story-img" src="Images/mexic.jpg" alt="Oaxaca">
+              <div class="story-img-overlay"></div>
+              <div class="story-img-cat"><span class="tag tag-dark">🌮 Мексика</span></div>
+            </div>
+            <div class="story-body">
+              <h3 class="story-title">Как я три дня учился делать моле в Оахаке</h3>
+              <p class="story-excerpt">Моле — это не соус, это медитация. 30 ингредиентов, 6 часов работы, и всё равно ощущение, что чего-то не хватает. Пока местная повар Долорес не объяснила секрет.</p>
+              <div class="story-footer">
+                <div class="story-author">by <strong>Мария Лебедева</strong></div>
+                <div class="story-read">6 мин →</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-img-wrap">
+              <img class="story-img" src="Images/grusin.jpg" alt="Georgia">
+              <div class="story-img-overlay"></div>
+              <div class="story-img-cat"><span class="tag tag-dark">🍷 Грузия</span></div>
+            </div>
+            <div class="story-body">
+              <h3 class="story-title">Тбилисская супра: застолье, которое длилось 9 часов</h3>
+              <p class="story-excerpt">Тамада поднял 47 тостов. Хинкали подавали три раза. Мы пели грузинские песни, хотя не знали слов. К концу вечера я понял, что такое настоящее гостеприимство.</p>
+              <div class="story-footer">
+                <div class="story-author">by <strong>Дмитрий Власов</strong></div>
+                <div class="story-read">9 мин →</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-img-wrap">
+              <img class="story-img" src="Images/vietnam.jpg" alt="Vietnam pho">
+              <div class="story-img-overlay"></div>
+              <div class="story-img-cat"><span class="tag tag-dark">🍜 Вьетнам</span></div>
+            </div>
+            <div class="story-body">
+              <h3 class="story-title">Фо за 50 центов: зачем я вставал в 5 утра каждый день</h3>
+              <p class="story-excerpt">Самая лучшая миска фо в Ханое стоит 15 000 донгов. Подают её только до 7 утра. Очередь занимают за час до открытия. И это того стоит каждый раз.</p>
+              <div class="story-footer">
+                <div class="story-author">by <strong>Анна Козлова</strong></div>
+                <div class="story-read">5 мин →</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-img-wrap">
+              <img class="story-img" src="Images/night.jpg" alt="Marrakesh">
+              <div class="story-img-overlay"></div>
+              <div class="story-img-cat"><span class="tag tag-dark">🫖 Марокко</span></div>
+            </div>
+            <div class="story-body">
+              <h3 class="story-title">Базар специй Марракеша: запахи, которые меняют память</h3>
+              <p class="story-excerpt">Я зашёл на рынок за шафраном. Вышел через три часа с двумя килограммами специй, рецептом таджина и номером телефона Ахмеда, который пригласил на ужин.</p>
+              <div class="story-footer">
+                <div class="story-author">by <strong>Сергей Миронов</strong></div>
+                <div class="story-read">7 мин →</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-img-wrap">
+              <img class="story-img" src="Images/pasta.jpg" alt="Bologna">
+              <div class="story-img-overlay"></div>
+              <div class="story-img-cat"><span class="tag tag-dark">🍝 Италия</span></div>
+            </div>
+            <div class="story-body">
+              <h3 class="story-title">Нонна Лючия и её тальятелле: урок, который длился весь день</h3>
+              <p class="story-excerpt">Ей 78 лет. Она делает тесто голыми руками. Скалка длиной 1.5 метра — фамильная реликвия. И она молчала, пока я не понял сам, в чём секрет настоящей болонской пасты.</p>
+              <div class="story-footer">
+                <div class="story-author">by <strong>Елена Соколова</strong></div>
+                <div class="story-read">11 мин →</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-card">
+            <div class="story-img-wrap">
+              <img class="story-img" src="Images/filosof.jpg" alt="Istanbul">
+              <div class="story-img-overlay"></div>
+              <div class="story-img-cat"><span class="tag tag-dark">🌉 Стамбул</span></div>
+            </div>
+            <div class="story-body">
+              <h3 class="story-title">Рыбный бутерброд на Босфоре и другие турецкие обряды</h3>
+              <p class="story-excerpt">Балик экмек — рыба в хлебе — продаётся прямо с лодок под мостом Галата. Это не закуска, это традиция. И самая вкусная вещь за всю поездку.</p>
+              <div class="story-footer">
+                <div class="story-author">by <strong>Павел Орлов</strong></div>
+                <div class="story-read">6 мин →</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:48px;">
+          <button class="btn btn-ghost">Загрузить ещё истории ↓</button>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+
+        <div class="sidebar-widget">
+          <div class="sidebar-title">🔥 Популярное</div>
+          <div class="popular-item">
+            <div class="popular-num">01</div>
+            <div>
+              <div class="popular-title">48 часов в Осаке: как я съел всё, что можно</div>
+              <div class="popular-meta">8 мин · 12.4к прочтений</div>
+            </div>
+          </div>
+          <div class="popular-item">
+            <div class="popular-num">02</div>
+            <div>
+              <div class="popular-title">Нонна Лючия и её тальятелле</div>
+              <div class="popular-meta">11 мин · 9.1к прочтений</div>
+            </div>
+          </div>
+          <div class="popular-item">
+            <div class="popular-num">03</div>
+            <div>
+              <div class="popular-title">Тбилисская супра: 9 часов за столом</div>
+              <div class="popular-meta">9 мин · 7.8к прочтений</div>
+            </div>
+          </div>
+          <div class="popular-item">
+            <div class="popular-num">04</div>
+            <div>
+              <div class="popular-title">Фо за 50 центов в Ханое</div>
+              <div class="popular-meta">5 мин · 6.2к прочтений</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <div class="sidebar-title">🏷️ Теги</div>
+          <div class="tag-cloud">
+            <span class="tag-cloud-item">Азия</span>
+            <span class="tag-cloud-item">Рынки</span>
+            <span class="tag-cloud-item">Рецепты</span>
+            <span class="tag-cloud-item">Уличная еда</span>
+            <span class="tag-cloud-item">Вино</span>
+            <span class="tag-cloud-item">Специи</span>
+            <span class="tag-cloud-item">Италия</span>
+            <span class="tag-cloud-item">Япония</span>
+            <span class="tag-cloud-item">Мексика</span>
+            <span class="tag-cloud-item">Грузия</span>
+            <span class="tag-cloud-item">Советы</span>
+            <span class="tag-cloud-item">Бюджет</span>
+          </div>
+        </div>
+
+        <div class="sidebar-widget newsletter-widget">
+          <div class="sidebar-title">📬 Рассылка</div>
+          <p style="font-size:.83rem;color:var(--muted);line-height:1.6;margin-bottom:16px;font-weight:300;">Новые истории каждые две недели прямо на почту.</p>
+          <div class="form-group">
+            <input class="form-input" type="email" placeholder="ваш@email.ru">
+          </div>
+          <div style="margin-top:10px;">
+            <button class="btn btn-primary" style="width:100%;justify-content:center;">Подписаться</button>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-script">Flavour</span>
+          <span class="logo-serif">ATLAS</span>
+        </a>
+        <p>Исследуем мир через вкус. Каждый кусочек — новая история.</p>
+        <div class="social-links">
+          <a href="https://t.me/Nickusor" class="social-btn" target="_blank" rel="noopener noreferrer" title="Telegram">✈️</a>
+          <a href="mailto:mihakozlov2007@gmail.com" class="social-btn" title="Email">📧</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="destinations.html">Направления</a></li>
+          <li><a href="story.html">Истории</a></li>
+          <li><a href="about.html">О нас</a></li>
+          <li><a href="booking.html">Бронирование</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Темы</h4>
+        <ul>
+          <li><a href="story.html">Уличная еда</a></li>
+          <li><a href="story.html">Рынки мира</a></li>
+          <li><a href="story.html">Рецепты</a></li>
+          <li><a href="story.html">Вино & Напитки</a></li>
+          <li><a href="story.html">Советы</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакт</h4>
+        <ul>
+          <li><a href="mailto:mihakozlov2007@gmail.com">Написать нам</a></li>
+          <li><a href="story.html">Стать автором</a></li>
+          <li><a href="about.html">Партнёрство</a></li>
+          <li><a href="about.html">Реклама</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Flavour Atlas. Сделано с 🧡 и острой едой.</span>
+      <span class="footer-copy">Конфиденциальность · Условия</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

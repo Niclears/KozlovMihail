@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+<title>Направления — Flavour Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="shared.css" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.dest-hero {
+  position: relative;
+  min-height: 52vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--dark);
+}
+.dest-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('Images/spec.jpg') center/cover no-repeat;
+  opacity: .35;
+}
+.dest-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--dark) 0%, rgba(10,7,4,.55) 55%, transparent 100%);
+}
+.dest-hero-content {
+  position: relative; z-index: 2;
+  padding: 140px 0 56px;
+  animation: fadeUp .7s .15s ease both;
+}
+.dest-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 700; line-height: 1.1;
+  color: var(--cream); margin-bottom: 14px;
+}
+.dest-hero h1 em { font-style: italic; color: var(--gold); }
+.dest-hero p { font-size: 1rem; color: var(--sand); font-weight: 300; line-height: 1.7; max-width: 520px; }
+
+.filter-bar {
+  background: rgba(22,13,4,.96);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  position: sticky; top: 58px; z-index: 10;
+  backdrop-filter: blur(16px);
+}
+.filter-bar .container {
+  display: flex; align-items: center;
+  gap: 10px; padding-top: 14px; padding-bottom: 14px;
+  flex-wrap: wrap;
+}
+.filter-label { font-size: .75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; white-space: nowrap; }
+.filter-btn {
+  padding: 7px 16px; border-radius: 100px;
+  font-size: .8rem; font-weight: 500; cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,.1);
+  background: transparent; color: var(--sand);
+  transition: all .25s; white-space: nowrap;
+}
+.filter-btn:hover, .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+
+.filter-search {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 100px; padding: 7px 16px;
+  transition: border-color .2s;
+}
+.filter-search:focus-within { border-color: rgba(245,158,11,.4); }
+.filter-search input { background: none; border: none; outline: none; color: var(--cream); font-family: 'Inter', sans-serif; font-size: .83rem; width: 150px; }
+.filter-search input::placeholder { color: var(--muted); }
+
+.catalog-section { background: var(--dark); padding: 56px 0 96px; }
+
+.continent-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; margin-top: 60px; }
+.continent-header:first-of-type { margin-top: 0; }
+.continent-title { font-family: 'Playfair Display', serif; font-size: 1.45rem; font-weight: 700; color: var(--cream); white-space: nowrap; }
+.continent-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(245,158,11,.25), transparent); }
+.continent-count { font-size: .76rem; color: var(--muted); white-space: nowrap; }
+
+.catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+.catalog-card {
+  border-radius: 26px; overflow: hidden;
+  background: var(--dark2);
+  border: 1px solid rgba(255,255,255,.06);
+  cursor: pointer;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s;
+  text-decoration: none; color: inherit; display: block;
+}
+.catalog-card:hover { transform: translateY(-7px); box-shadow: 0 24px 60px rgba(0,0,0,.55); border-color: rgba(245,158,11,.22); }
+.catalog-card.featured { grid-column: span 2; }
+
+.catalog-img-wrap { position: relative; height: 230px; overflow: hidden; }
+.catalog-card.featured .catalog-img-wrap { height: 320px; }
+.catalog-img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
+.catalog-card:hover .catalog-img { transform: scale(1.07); }
+.catalog-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,.6) 100%); }
+.catalog-badge-top { position: absolute; top: 14px; left: 14px; display: flex; gap: 8px; }
+.catalog-rating { position: absolute; top: 14px; right: 14px; background: rgba(245,158,11,.92); border-radius: 100px; padding: 4px 10px; font-size: .74rem; font-weight: 700; color: #fff; }
+
+.catalog-body { padding: 20px 22px 22px; }
+.catalog-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+.catalog-city { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--cream); line-height: 1; }
+.catalog-country { font-size: .78rem; color: var(--muted); margin-top: 3px; }
+.catalog-emoji { font-size: 1.7rem; }
+.catalog-desc {
+  font-size: .84rem; color: var(--sand); line-height: 1.6; font-weight: 300; margin-bottom: 14px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.catalog-dishes { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.dish-tag { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 100px; padding: 3px 10px; font-size: .7rem; color: var(--sand); }
+.catalog-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.06); }
+.catalog-meta { display: flex; gap: 14px; }
+.meta-item { font-size: .76rem; color: var(--muted); }
+.meta-item strong { color: var(--gold); font-weight: 600; }
+.catalog-link { font-size: .8rem; color: var(--gold); font-weight: 500; text-decoration: none; transition: gap .2s; display: flex; align-items: center; gap: 4px; }
+.catalog-card:hover .catalog-link { gap: 8px; }
+
+@media (max-width: 1024px) { .catalog-grid { grid-template-columns: repeat(2,1fr); } .catalog-card.featured { grid-column: span 2; } }
+@media (max-width: 640px) { .catalog-grid { grid-template-columns: 1fr; } .catalog-card.featured { grid-column: span 1; } .filter-search { display: none; } }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <span class="logo-script">Flavour</span>
+      <span class="logo-serif">ATLAS</span>
+    </a>
+    <ul class="nav-desktop">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="destinations.html" class="active">Направления <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Африка</a></li></ul>
+      </li>
+      <li><a href="story.html">Истории <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul>
+      </li>
+      <li><a href="about.html">О нас <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="about.html">Контакты</a></li></ul>
+      </li>
+    </ul>
+    <a href="auth.html" class="nav-auth-link">🔑 Войти</a>
+    <a href="booking.html" class="nav-cta-btn">Забронировать</a>
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox"/>
+      <label class="menu__btn" for="menu__toggle"><span></span></label>
+      <div class="menu__overlay" onclick="document.getElementById('menu__toggle').checked=false"></div>
+      <ul class="menu__box">
+        <li><a class="menu__item" href="index.html">🏠 Главная</a></li>
+        <li><input type="checkbox" id="sub-dest-m" class="menu__sub-toggle" checked/><label for="sub-dest-m">🗺️ Направления</label><ul class="menu__sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Лат. Америка</a></li><li><a href="destinations.html">Африка</a></li></ul></li>
+        <li><input type="checkbox" id="sub-story-m" class="menu__sub-toggle" checked/><label for="sub-story-m">✍️ Истории</label><ul class="menu__sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul></li>
+        <li><input type="checkbox" id="sub-about-m" class="menu__sub-toggle" checked/><label for="sub-about-m">👥 О нас</label><ul class="menu__sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li></ul></li>
+        <li><a class="menu__item" href="privacy.html">🔒 Политика конфиденциальности</a></li>
+        <li><a class="menu__item" href="developer.html">💻 Разработчик</a></li>
+        <li><a class="menu__item" href="booking.html">📅 Забронировать</a></li>
+        <li><a class="menu__item" href="auth.html">🔑 Войти / Регистрация</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="dest-hero">
+  <div class="container dest-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Главная</a>
+      <span class="sep">/</span>
+      <span>Направления</span>
+    </div>
+    <div class="tag tag-gold" style="margin-bottom:16px;">🌍 47 гастрономических столиц</div>
+    <h1>Куда ехать <em>есть</em></h1>
+    <p>Каждый город — отдельный язык вкуса. Найдите свой следующий гастрономический маршрут.</p>
+  </div>
+</section>
+
+<section class="catalog-section">
+  <div class="container">
+
+    <div class="continent-header">
+      <div class="continent-title">🌏 Азия</div>
+      <div class="continent-line"></div>
+      <div class="continent-count">18 направлений</div>
+    </div>
+
+    <div class="catalog-grid">
+
+      <a href="booking.html" class="catalog-card featured">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/spec.jpg" alt="Osaka" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top">
+            <span class="tag tag-dark">🔥 Топ выбор</span>
+            <span class="tag tag-dark">Уличная еда</span>
+          </div>
+          <div class="catalog-rating">★ 4.9</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div>
+              <div class="catalog-city">Осака, Япония</div>
+              <div class="catalog-country">🇯🇵 Хонсю · <strong style="color:var(--gold)">$$</strong> · Март–Май</div>
+            </div>
+            <div class="catalog-emoji">🍜</div>
+          </div>
+          <p class="catalog-desc">Мировая столица уличной еды. «Куитаоре» — упасть замертво от еды. Дотонбори, Куродамон, Нисики — три рынка, которые изменят вас навсегда.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Такояки</span><span class="dish-tag">Окономияки</span><span class="dish-tag">Рамен</span><span class="dish-tag">Кусикацу</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>7 дней</strong></div><div class="meta-item">👥 от <strong>1 чел.</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/vietnam.jpg" alt="Bangkok" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">Уличная еда</span></div>
+          <div class="catalog-rating">★ 4.8</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Бангкок</div><div class="catalog-country">🇹🇭 Таиланд · <strong style="color:var(--gold)">$</strong> · Нояб–Фев</div></div>
+            <div class="catalog-emoji">🍲</div>
+          </div>
+          <p class="catalog-desc">Плавучие рынки, 24/7 уличная еда и самый насыщенный food-scene в Юго-Восточной Азии.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Пад Тай</span><span class="dish-tag">Сом Там</span><span class="dish-tag">Том Ям</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>5–7 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/night.jpg" alt="Hoian" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">Fusion</span></div>
+          <div class="catalog-rating">★ 4.8</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Хойан</div><div class="catalog-country">🇻🇳 Вьетнам · <strong style="color:var(--gold)">$</strong> · Фев–Апр</div></div>
+            <div class="catalog-emoji">🥢</div>
+          </div>
+          <p class="catalog-desc">Кулинарный перекрёсток трёх культур. Cao Lầu готовят только с водой из древних колодцев этого города.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Cao Lầu</span><span class="dish-tag">Белая роза</span><span class="dish-tag">Ком Га</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>4–6 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/spec.jpg" alt="Seoul" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">Ночной рынок</span></div>
+          <div class="catalog-rating">★ 4.7</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Сеул</div><div class="catalog-country">🇰🇷 Корея · <strong style="color:var(--gold)">$$</strong> · Сент–Нояб</div></div>
+            <div class="catalog-emoji">🌶️</div>
+          </div>
+          <p class="catalog-desc">Ферментированные шедевры и корейское барбекю — культ. Рынок Кванджан работает с 1905 года без единого выходного.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Кимчи</span><span class="dish-tag">Самгёпсаль</span><span class="dish-tag">Пибимпап</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>5–8 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="continent-header">
+      <div class="continent-title">🌍 Европа</div>
+      <div class="continent-line"></div>
+      <div class="continent-count">14 направлений</div>
+    </div>
+
+    <div class="catalog-grid">
+
+      <a href="booking.html" class="catalog-card featured">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/pasta.jpg" alt="Bologna" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">🏆 Лучшая паста</span><span class="tag tag-dark">La Grassa</span></div>
+          <div class="catalog-rating">★ 4.9</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Болонья, Италия</div><div class="catalog-country">🇮🇹 Эмилия-Романья · <strong style="color:var(--gold)">$$$</strong> · Апр–Июнь</div></div>
+            <div class="catalog-emoji">🍝</div>
+          </div>
+          <p class="catalog-desc">«La Grassa» — «Жирная». Здесь не едят для жизни — здесь живут для еды. Настоящий болоньезе и тортеллини в бульоне, которые нонна готовит уже 60 лет.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Тальятелле аль рагу</span><span class="dish-tag">Тортеллини</span><span class="dish-tag">Мортаделла</span><span class="dish-tag">Пармиджано</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>5–7 дней</strong></div><div class="meta-item">👥 от <strong>1 чел.</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/grusin.jpg" alt="Tbilisi" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">🍷 Вино</span></div>
+          <div class="catalog-rating">★ 4.9</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Тбилиси</div><div class="catalog-country">🇬🇪 Грузия · <strong style="color:var(--gold)">$$</strong> · Май–Окт</div></div>
+            <div class="catalog-emoji">🥟</div>
+          </div>
+          <p class="catalog-desc">8000 лет виноделия. Супра — грузинское застолье — это не ужин, это многочасовая поэма о гостеприимстве.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Хинкали</span><span class="dish-tag">Хачапури</span><span class="dish-tag">Мцвади</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>5–8 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/mexic.jpg" alt="Istanbul" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">Специи</span></div>
+          <div class="catalog-rating">★ 4.8</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Стамбул</div><div class="catalog-country">🇹🇷 Турция · <strong style="color:var(--gold)">$$</strong> · Апр–Июнь</div></div>
+            <div class="catalog-emoji">🫖</div>
+          </div>
+          <p class="catalog-desc">Мост между Востоком и Западом. Египетский базар специй, симит на Босфоре и кебаб в Бейоглу.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Кебаб</span><span class="dish-tag">Мезе</span><span class="dish-tag">Балик экмек</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>5–7 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="continent-header">
+      <div class="continent-title">🌎 Латинская Америка & Африка</div>
+      <div class="continent-line"></div>
+      <div class="continent-count">9 направлений</div>
+    </div>
+
+    <div class="catalog-grid">
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/mexic.jpg" alt="Oaxaca" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">Авторская кухня</span></div>
+          <div class="catalog-rating">★ 4.8</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Оахака</div><div class="catalog-country">🇲🇽 Мексика · <strong style="color:var(--gold)">$</strong> · Окт–Янв</div></div>
+            <div class="catalog-emoji">🌮</div>
+          </div>
+          <p class="catalog-desc">Родина шоколада и семи видов моле. Рынок Бенито Хуарес — гастрономический рай под одной крышей.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Тлаюда</span><span class="dish-tag">Моле негро</span><span class="dish-tag">Мескаль</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>6–9 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/night.jpg" alt="Marrakesh" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">🫖 Марокко</span></div>
+          <div class="catalog-rating">★ 4.7</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Марракеш</div><div class="catalog-country">🇲🇦 Марокко · <strong style="color:var(--gold)">$</strong> · Сент–Нояб</div></div>
+            <div class="catalog-emoji">🫕</div>
+          </div>
+          <p class="catalog-desc">Джемаа-эль-Фна — живой театр еды с закатным шоу. Мятный чай и таджин — это не меню, это ритуал.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Таджин</span><span class="dish-tag">Кускус</span><span class="dish-tag">Пастилья</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>5–7 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="booking.html" class="catalog-card">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img" src="Images/filosof.jpg" alt="Delhi" loading="lazy">
+          <div class="catalog-img-overlay"></div>
+          <div class="catalog-badge-top"><span class="tag tag-dark">Пряности</span></div>
+          <div class="catalog-rating">★ 4.6</div>
+        </div>
+        <div class="catalog-body">
+          <div class="catalog-header">
+            <div><div class="catalog-city">Дели</div><div class="catalog-country">🇮🇳 Индия · <strong style="color:var(--gold)">$</strong> · Окт–Март</div></div>
+            <div class="catalog-emoji">🍛</div>
+          </div>
+          <p class="catalog-desc">Чандни-Чоук — лабиринт специй, сладостей и сотен разновидностей уличной еды на площади одного квартала.</p>
+          <div class="catalog-dishes"><span class="dish-tag">Паратха</span><span class="dish-tag">Чат</span><span class="dish-tag">Ласси</span></div>
+          <div class="catalog-footer">
+            <div class="catalog-meta"><div class="meta-item">⏱ <strong>7–10 дней</strong></div></div>
+            <span class="catalog-link">Забронировать →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-script">Flavour</span><span class="logo-serif">ATLAS</span></a>
+        <p>Исследуем мир через вкус. Каждый кусочек — новая история о людях и местах.</p>
+        <div class="social-links">
+          <a href="https://t.me/Nickusor" class="social-btn" target="_blank" rel="noopener noreferrer" title="Telegram">✈️</a>
+          <a href="mailto:mihakozlov2007@gmail.com" class="social-btn" title="Email">📧</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Направления</h4>
+        <ul>
+          <li><a href="destinations.html">Азия</a></li>
+          <li><a href="destinations.html">Европа</a></li>
+          <li><a href="destinations.html">Латинская Америка</a></li>
+          <li><a href="destinations.html">Ближний Восток</a></li>
+          <li><a href="destinations.html">Африка</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Форматы</h4>
+        <ul>
+          <li><a href="booking.html">Рыночные туры</a></li>
+          <li><a href="booking.html">Мастер-классы</a></li>
+          <li><a href="booking.html">Винные туры</a></li>
+          <li><a href="booking.html">Фермерские дни</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>О нас</h4>
+        <ul>
+          <li><a href="about.html">Наша история</a></li>
+          <li><a href="about.html">Команда</a></li>
+          <li><a href="story.html">Блог</a></li>
+          <li><a href="booking.html">Бронирование</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links-row">
+        <a href="https://www.bartc.by" target="_blank" rel="noopener noreferrer">🏫 Политехнический колледж</a>
+        <span>·</span>
+        <a href="sitemap.html">🗺️ Карта сайта (SiteMap)</a>
+        <span>·</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <span>·</span>
+        <a href="developer.html">Разработчик</a>
+      </div>
+      <div class="footer-links-row">
+        <span class="footer-copy">© 2026 Flavour Atlas. Сделано с 🧡 и острой едой.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
