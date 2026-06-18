@@ -8,6 +8,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
+  <style>
+    @media (max-width: 768px) {
+      .nav-desktop { display: none !important; }
+      .nav-cta-btn { display: none !important; }
+      .nav-auth-link { display: none !important; }
+      .hamburger-menu { display: flex !important; }
+      .navbar .container { justify-content: space-between; }
+      .logo { flex-shrink: 0; }
+    }
+  </style>
 </head>
 <body>
 
@@ -89,12 +99,12 @@
       <a href="destinations.html" class="btn btn-ghost">Все 47 направлений &rarr;</a>
     </div>
     <div class="dest-grid">
-      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/spec.jpg" alt="Osaka" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Уличная еда</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍜</div><div class="dest-city">Осака</div><div class="dest-country">Япония</div><div class="dest-desc">Мировая столица уличной еды: такояки, окономияки, рамен на каждом углу.</div><div class="dest-meta"><span class="dest-price">$$</span><span class="dest-time">Март – Май</span></div><div class="dest-tags"><span class="dest-dish">Такояки</span><span class="dest-dish">Окономияки</span><span class="dest-dish">Рамен</span></div></div></a>
-      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/mexic.jpg" alt="Oaxaca" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Авторская кухня</div><div class="dest-rating">★ 4.8</div><div class="dest-body"><div class="dest-emoji">🌮</div><div class="dest-city">Оахака</div><div class="dest-country">Мексика</div><div class="dest-desc">Родина шоколада, мескаля и семи видов моле.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Окт – Янв</span></div><div class="dest-tags"><span class="dest-dish">Тлаюда</span><span class="dest-dish">Моле негро</span><span class="dest-dish">Тасахо</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/spec.jpg" alt="Osaka" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Уличная еда</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍜</div><div class="dest-city">Осака</div><div class="dest-country">Япония</div><div class="dest-desc">Мировая столица уличной еды.</div><div class="dest-meta"><span class="dest-price">$$</span><span class="dest-time">Март – Май</span></div><div class="dest-tags"><span class="dest-dish">Такояки</span><span class="dest-dish">Окономияки</span><span class="dest-dish">Рамен</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/mexic.jpg" alt="Oaxaca" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Авторская кухня</div><div class="dest-rating">★ 4.8</div><div class="dest-body"><div class="dest-emoji">🌮</div><div class="dest-city">Оахака</div><div class="dest-country">Мексика</div><div class="dest-desc">Родина шоколада и семи видов моле.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Окт – Янв</span></div><div class="dest-tags"><span class="dest-dish">Тлаюда</span><span class="dest-dish">Моле негро</span><span class="dest-dish">Тасахо</span></div></div></a>
       <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/night.jpg" alt="Marrakesh" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Специи & Пряности</div><div class="dest-rating">★ 4.7</div><div class="dest-body"><div class="dest-emoji">🫖</div><div class="dest-city">Марракеш</div><div class="dest-country">Марокко</div><div class="dest-desc">Джемаа-эль-Фна — живой театр еды.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Сент – Нояб</span></div><div class="dest-tags"><span class="dest-dish">Таджин</span><span class="dest-dish">Кускус</span><span class="dest-dish">Пастилья</span></div></div></a>
-      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/pasta.jpg" alt="Bologna" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">La Grassa</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍝</div><div class="dest-city">Болонья</div><div class="dest-country">Италия</div><div class="dest-desc">Жирная, сытная, гордая. Настоящий болоньезе.</div><div class="dest-meta"><span class="dest-price">$$$</span><span class="dest-time">Апр – Июнь</span></div><div class="dest-tags"><span class="dest-dish">Тальятелле</span><span class="dest-dish">Тортеллини</span><span class="dest-dish">Мортаделла</span></div></div></a>
-      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/vietnam.jpg" alt="Vietnam" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Fusion & Традиции</div><div class="dest-rating">★ 4.8</div><div class="dest-body"><div class="dest-emoji">🍲</div><div class="dest-city">Хойан</div><div class="dest-country">Вьетнам</div><div class="dest-desc">Кулинарный перекрёсток Азии. Cao Lầu.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Фев – Апр</span></div><div class="dest-tags"><span class="dest-dish">Cao Lầu</span><span class="dest-dish">Белая роза</span><span class="dest-dish">Ком Га</span></div></div></a>
-      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/grusin.jpg" alt="Georgia" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Вино & Застолье</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍷</div><div class="dest-city">Тбилиси</div><div class="dest-country">Грузия</div><div class="dest-desc">Колыбель виноделия. Супра — многочасовое застолье.</div><div class="dest-meta"><span class="dest-price">$$</span><span class="dest-time">Май – Окт</span></div><div class="dest-tags"><span class="dest-dish">Хинкали</span><span class="dest-dish">Хачапури</span><span class="dest-dish">Мцвади</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/pasta.jpg" alt="Bologna" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">La Grassa</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍝</div><div class="dest-city">Болонья</div><div class="dest-country">Италия</div><div class="dest-desc">Жирная, сытная, гордая.</div><div class="dest-meta"><span class="dest-price">$$$</span><span class="dest-time">Апр – Июнь</span></div><div class="dest-tags"><span class="dest-dish">Тальятелле</span><span class="dest-dish">Тортеллини</span><span class="dest-dish">Мортаделла</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/vietnam.jpg" alt="Vietnam" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Fusion & Традиции</div><div class="dest-rating">★ 4.8</div><div class="dest-body"><div class="dest-emoji">🍲</div><div class="dest-city">Хойан</div><div class="dest-country">Вьетнам</div><div class="dest-desc">Кулинарный перекрёсток Азии.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Фев – Апр</span></div><div class="dest-tags"><span class="dest-dish">Cao Lầu</span><span class="dest-dish">Белая роза</span><span class="dest-dish">Ком Га</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/grusin.jpg" alt="Georgia" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Вино & Застолье</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍷</div><div class="dest-city">Тбилиси</div><div class="dest-country">Грузия</div><div class="dest-desc">Колыбель виноделия.</div><div class="dest-meta"><span class="dest-price">$$</span><span class="dest-time">Май – Окт</span></div><div class="dest-tags"><span class="dest-dish">Хинкали</span><span class="dest-dish">Хачапури</span><span class="dest-dish">Мцвади</span></div></div></a>
     </div>
   </div>
 </section>
@@ -124,7 +134,7 @@
   <div class="container">
     <div class="exp-header"><span class="section-label">что вас ждёт</span><h2 class="section-title">Форматы <em>гастро-опыта</em></h2></div>
     <div class="exp-grid">
-      <a class="exp-card c1" href="booking.html"><div class="exp-emoji">🏪</div><h3>Рыночные туры на рассвете</h3><p>Встречайте утро с местными торговцами. Узнайте, как выбирать манго на ощупь.</p><div class="exp-footer"><span class="exp-duration">⏱ 3–4 часа</span><span class="exp-link">Забронировать →</span></div></a>
+      <a class="exp-card c1" href="booking.html"><div class="exp-emoji">🏪</div><h3>Рыночные туры на рассвете</h3><p>Встречайте утро с местными торговцами.</p><div class="exp-footer"><span class="exp-duration">⏱ 3–4 часа</span><span class="exp-link">Забронировать →</span></div></a>
       <a class="exp-card c2" href="booking.html"><div class="exp-emoji">👵</div><h3>Мастер-классы у бабушек</h3><p>Самые честные рецепты — те, что передаются без книг.</p><div class="exp-footer"><span class="exp-duration">⏱ 5–6 часов</span><span class="exp-link">Забронировать →</span></div></a>
       <a class="exp-card c3" href="booking.html"><div class="exp-emoji">🍷</div><h3>Винные & Пивные погреба</h3><p>От квеври в Кахетии до баварских пивоварен.</p><div class="exp-footer"><span class="exp-duration">⏱ 2–3 часа</span><span class="exp-link">Забронировать →</span></div></a>
       <a class="exp-card c4" href="booking.html"><div class="exp-emoji">🌶️</div><h3>Охота за специями</h3><p>Старые базары Стамбула, Марракеша, Дели.</p><div class="exp-footer"><span class="exp-duration">⏱ 2–4 часа</span><span class="exp-link">Забронировать →</span></div></a>
@@ -211,18 +221,9 @@
           <a href="mailto:mihakozlov2007@gmail.com" class="social-btn" title="Email">📧</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Направления</h4>
-        <ul><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Ближний Восток</a></li><li><a href="destinations.html">Африка</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>Форматы</h4>
-        <ul><li><a href="booking.html">Рыночные туры</a></li><li><a href="booking.html">Кулинарные классы</a></li><li><a href="booking.html">Винные туры</a></li><li><a href="booking.html">Фермерские дни</a></li><li><a href="booking.html">Уличная еда</a></li></ul>
-      </div>
-      <div class="footer-col">
-        <h4>О нас</h4>
-        <ul><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="story.html">Блог</a></li><li><a href="booking.html">Бронирование</a></li><li><a href="auth.html">Войти</a></li></ul>
-      </div>
+      <div class="footer-col"><h4>Направления</h4><ul><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Ближний Восток</a></li><li><a href="destinations.html">Африка</a></li></ul></div>
+      <div class="footer-col"><h4>Форматы</h4><ul><li><a href="booking.html">Рыночные туры</a></li><li><a href="booking.html">Кулинарные классы</a></li><li><a href="booking.html">Винные туры</a></li><li><a href="booking.html">Фермерские дни</a></li><li><a href="booking.html">Уличная еда</a></li></ul></div>
+      <div class="footer-col"><h4>О нас</h4><ul><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="story.html">Блог</a></li><li><a href="booking.html">Бронирование</a></li><li><a href="auth.html">Войти</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <div class="footer-links-row">
