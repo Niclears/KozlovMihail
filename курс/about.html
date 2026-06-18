@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Галерея — Flavour Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .gallery-hero-bg { background-image: url('images/gallery-1.jpg'); }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-script">Flavour</span><span class="logo-serif">ATLAS</span></a>
+    <ul class="nav-desktop">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="destinations.html">Направления <span class="nav-arrow">▾</span></a><ul class="nav-sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Африка</a></li></ul></li>
+      <li><a href="story.html">Истории <span class="nav-arrow">▾</span></a><ul class="nav-sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul></li>
+      <li><a href="about.html">О нас <span class="nav-arrow">▾</span></a><ul class="nav-sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="about.html">Контакты</a></li></ul></li>
+    </ul>
+    <a href="auth.html" class="nav-auth-link">🔑 Войти</a>
+    <a href="booking.html" class="nav-cta-btn">Забронировать</a>
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox"/><label class="menu__btn" for="menu__toggle"><span></span></label>
+      <div class="menu__overlay" onclick="document.getElementById('menu__toggle').checked=false"></div>
+      <ul class="menu__box">
+        <li><a class="menu__item" href="index.html">🏠 Главная</a></li>
+        <li><input type="checkbox" id="sub-dest-m" class="menu__sub-toggle" checked/><label for="sub-dest-m">🗺️ Направления</label><ul class="menu__sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Лат. Америка</a></li><li><a href="destinations.html">Африка</a></li></ul></li>
+        <li><input type="checkbox" id="sub-story-m" class="menu__sub-toggle" checked/><label for="sub-story-m">✍️ Истории</label><ul class="menu__sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul></li>
+        <li><input type="checkbox" id="sub-about-m" class="menu__sub-toggle" checked/><label for="sub-about-m">👥 О нас</label><ul class="menu__sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li></ul></li>
+        <li><a class="menu__item" href="privacy.html">🔒 Политика конфиденциальности</a></li>
+        <li><a class="menu__item" href="developer.html">💻 Разработчик</a></li>
+        <li><a class="menu__item" href="booking.html">📅 Забронировать</a></li>
+        <li><a class="menu__item" href="auth.html">🔑 Войти / Регистрация</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg gallery-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="container">
+    <div class="page-hero-content">
+      <span class="tag tag-gold" style="margin-bottom:20px">🖼️ Галерея</span>
+      <h1>Мир на <em>тарелке</em></h1>
+      <p>Каждое фото — это момент, когда еда становится историей. Погрузитесь в атмосферу гастрономических путешествий через нашу галерею.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--dark); padding-top:60px; padding-bottom:40px">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:40px">
+      <span class="section-label">слайдер</span>
+      <h2 class="section-title">Лучшие <em>моменты</em></h2>
+    </div>
+    <div class="slider-container">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slider-slide" onclick="openLightbox(0)"><img src="images/gallery-1.jpg" alt="Бангкок" /><div class="slider-caption"><h3>Ночной рынок в Бангкоке</h3><p>Бангкок, Таиланд</p></div><div class="slider-zoom">🔍</div></div>
+        <div class="slider-slide" onclick="openLightbox(1)"><img src="images/gallery-2.jpg" alt="Болонья" /><div class="slider-caption"><h3>Приготовление пасты</h3><p>Болонья, Италия</p></div><div class="slider-zoom">🔍</div></div>
+        <div class="slider-slide" onclick="openLightbox(2)"><img src="images/gallery-3.jpg" alt="Осака" /><div class="slider-caption"><h3>Раменная в Осаке</h3><p>Осака, Япония</p></div><div class="slider-zoom">🔍</div></div>
+        <div class="slider-slide" onclick="openLightbox(3)"><img src="images/gallery-4.jpg" alt="Оахака" /><div class="slider-caption"><h3>Уличные тако</h3><p>Оахака, Мексика</p></div><div class="slider-zoom">🔍</div></div>
+        <div class="slider-slide" onclick="openLightbox(4)"><img src="images/gallery-5.jpg" alt="Марракеш" /><div class="slider-caption"><h3>Традиционный тажин</h3><p>Марракеш, Марокко</p></div><div class="slider-zoom">🔍</div></div>
+        <div class="slider-slide" onclick="openLightbox(5)"><img src="images/gallery-6.jpg" alt="Тбилиси" /><div class="slider-caption"><h3>Хинкали по-грузински</h3><p>Тбилиси, Грузия</p></div><div class="slider-zoom">🔍</div></div>
+      </div>
+    </div>
+    <div class="slider-controls">
+      <button class="slider-btn" onclick="prevSlide()">❮</button>
+      <div class="slider-dots" id="sliderDots">
+        <button class="slider-dot active" id="dot0" onclick="goToSlide(0)"></button>
+        <button class="slider-dot" id="dot1" onclick="goToSlide(1)"></button>
+        <button class="slider-dot" id="dot2" onclick="goToSlide(2)"></button>
+        <button class="slider-dot" id="dot3" onclick="goToSlide(3)"></button>
+        <button class="slider-dot" id="dot4" onclick="goToSlide(4)"></button>
+        <button class="slider-dot" id="dot5" onclick="goToSlide(5)"></button>
+      </div>
+      <button class="slider-btn" onclick="nextSlide()">❯</button>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery-section">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px">
+      <span class="section-label">коллекция</span>
+      <h2 class="section-title">Все <em>фотографии</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item featured" onclick="openLightbox(0)"><img src="images/gallery-1.jpg" alt="Бангкок" loading="lazy" /><div class="gallery-item-overlay"><div class="gallery-item-title">Ночной рынок в Бангкоке</div><div class="gallery-item-location">Бангкок, Таиланд</div></div><div class="gallery-item-zoom">🔍</div></div>
+      <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-2.jpg" alt="Болонья" loading="lazy" /><div class="gallery-item-overlay"><div class="gallery-item-title">Приготовление пасты</div><div class="gallery-item-location">Болонья, Италия</div></div><div class="gallery-item-zoom">🔍</div></div>
+      <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-3.jpg" alt="Осака" loading="lazy" /><div class="gallery-item-overlay"><div class="gallery-item-title">Раменная в Осаке</div><div class="gallery-item-location">Осака, Япония</div></div><div class="gallery-item-zoom">🔍</div></div>
+      <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-4.jpg" alt="Оахака" loading="lazy" /><div class="gallery-item-overlay"><div class="gallery-item-title">Уличные тако</div><div class="gallery-item-location">Оахака, Мексика</div></div><div class="gallery-item-zoom">🔍</div></div>
+      <div class="gallery-item featured" onclick="openLightbox(4)"><img src="images/gallery-5.jpg" alt="Марракеш" loading="lazy" /><div class="gallery-item-overlay"><div class="gallery-item-title">Традиционный тажин</div><div class="gallery-item-location">Марракеш, Марокко</div></div><div class="gallery-item-zoom">🔍</div></div>
+      <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-6.jpg" alt="Тбилиси" loading="lazy" /><div class="gallery-item-overlay"><div class="gallery-item-title">Хинкали по-грузински</div><div class="gallery-item-location">Тбилиси, Грузия</div></div><div class="gallery-item-zoom">🔍</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-cta">
+  <span class="section-label">присоединяйтесь</span>
+  <h2>Готовы <em>увидеть</em> всё своими глазами?</h2>
+  <p>Выберите направление, заполните форму — и мы подберём идеальный гастро-маршрут под вас.</p>
+  <div class="about-cta-btns">
+    <a href="booking.html" class="btn btn-primary">Забронировать тур →</a>
+    <a href="destinations.html" class="btn btn-ghost">Смотреть направления</a>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-content" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <span class="lightbox-counter" id="lightboxCounter">1 / 6</span>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxPrev()">❮</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNext()">❯</button>
+  </div>
+  <div class="lightbox-info">
+    <div class="lightbox-title" id="lightboxTitle"></div>
+    <div class="lightbox-location" id="lightboxLocation"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-script">Flavour</span><span class="logo-serif">ATLAS</span></a>
+        <p>Исследуем мир через вкус. Каждый кусочек — новая история о людях и местах.</p>
+        <div class="social-links">
+          <a href="https://t.me/Nickusor" class="social-btn" target="_blank" rel="noopener noreferrer" title="Telegram">✈️</a>
+          <a href="mailto:mihakozlov2007@gmail.com" class="social-btn" title="Email">📧</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Направления</h4><ul><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Ближний Восток</a></li><li><a href="destinations.html">Африка</a></li></ul></div>
+      <div class="footer-col"><h4>Форматы</h4><ul><li><a href="booking.html">Рыночные туры</a></li><li><a href="booking.html">Кулинарные классы</a></li><li><a href="booking.html">Винные туры</a></li><li><a href="booking.html">Фермерские дни</a></li><li><a href="booking.html">Уличная еда</a></li></ul></div>
+      <div class="footer-col"><h4>О нас</h4><ul><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="story.html">Блог</a></li><li><a href="booking.html">Бронирование</a></li><li><a href="auth.html">Войти</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links-row">
+        <a href="https://www.bartc.by" target="_blank" rel="noopener noreferrer">🏫 Политехнический колледж</a>
+        <span>·</span>
+        <a href="sitemap.html">🗺️ Карта сайта (SiteMap)</a>
+        <span>·</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <span>·</span>
+        <a href="developer.html">Разработчик</a>
+      </div>
+      <div class="footer-links-row">
+        <span class="footer-copy">© 2026 Flavour Atlas. Сделано с 🧡 и острой едой.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const galleryData = [
+    { src: 'images/gallery-1.jpg', title: 'Ночной рынок в Бангкоке', location: 'Бангкок, Таиланд' },
+    { src: 'images/gallery-2.jpg', title: 'Приготовление пасты', location: 'Болонья, Италия' },
+    { src: 'images/gallery-3.jpg', title: 'Раменная в Осаке', location: 'Осака, Япония' },
+    { src: 'images/gallery-4.jpg', title: 'Уличные тако', location: 'Оахака, Мексика' },
+    { src: 'images/gallery-5.jpg', title: 'Традиционный тажин', location: 'Марракеш, Марокко' },
+    { src: 'images/gallery-6.jpg', title: 'Хинкали по-грузински', location: 'Тбилиси, Грузия' },
+  ];
+
+  let lightboxIndex = 0;
+  let currentSlide = 0;
+  const totalSlides = 6;
+
+  function updateSlider() {
+    document.getElementById('sliderTrack').style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+    for (let i = 0; i < totalSlides; i++) {
+      document.getElementById('dot' + i).classList.toggle('active', i === currentSlide);
+    }
+  }
+
+  function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateSlider(); }
+  function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlider(); }
+  function goToSlide(index) { currentSlide = index; updateSlider(); }
+
+  function openLightbox(index) {
+    lightboxIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function updateLightbox() {
+    const data = galleryData[lightboxIndex];
+    document.getElementById('lightboxImg').src = data.src;
+    document.getElementById('lightboxTitle').textContent = data.title;
+    document.getElementById('lightboxLocation').textContent = data.location;
+    document.getElementById('lightboxCounter').textContent = (lightboxIndex + 1) + ' / ' + galleryData.length;
+  }
+
+  function lightboxNext() { lightboxIndex = (lightboxIndex + 1) % galleryData.length; updateLightbox(); }
+  function lightboxPrev() { lightboxIndex = (lightboxIndex - 1 + galleryData.length) % galleryData.length; updateLightbox(); }
+
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxNext();
+    if (e.key === 'ArrowLeft') lightboxPrev();
+  });
+</script>
+
+</body>
+</html>

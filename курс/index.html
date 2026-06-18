@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Flavour Atlas — Гастрономические Путешествия</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <span class="logo-script">Flavour</span>
+      <span class="logo-serif">ATLAS</span>
+    </a>
+    <ul class="nav-desktop">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="destinations.html">Направления <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Африка</a></li></ul>
+      </li>
+      <li><a href="story.html">Истории <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul>
+      </li>
+      <li><a href="about.html">О нас <span class="nav-arrow">▾</span></a>
+        <ul class="nav-sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="about.html">Контакты</a></li></ul>
+      </li>
+    </ul>
+    <a href="auth.html" class="nav-auth-link">🔑 Войти</a>
+    <a href="booking.html" class="nav-cta-btn">Забронировать</a>
+    <div class="hamburger-menu">
+      <input id="menu__toggle" type="checkbox"/>
+      <label class="menu__btn" for="menu__toggle"><span></span></label>
+      <div class="menu__overlay" onclick="document.getElementById('menu__toggle').checked=false"></div>
+      <ul class="menu__box">
+        <li><a class="menu__item" href="index.html">🏠 Главная</a></li>
+        <li><input type="checkbox" id="sub-dest-m" class="menu__sub-toggle" checked/><label for="sub-dest-m">🗺️ Направления</label><ul class="menu__sub"><li><a href="destinations.html">Все направления</a></li><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Лат. Америка</a></li><li><a href="destinations.html">Африка</a></li></ul></li>
+        <li><input type="checkbox" id="sub-story-m" class="menu__sub-toggle" checked/><label for="sub-story-m">✍️ Истории</label><ul class="menu__sub"><li><a href="story.html">Все истории</a></li><li><a href="story.html">Дневники</a></li><li><a href="story.html">Рецепты</a></li></ul></li>
+        <li><input type="checkbox" id="sub-about-m" class="menu__sub-toggle" checked/><label for="sub-about-m">👥 О нас</label><ul class="menu__sub"><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li></ul></li>
+        <li><a class="menu__item" href="privacy.html">🔒 Политика конфиденциальности</a></li>
+        <li><a class="menu__item" href="developer.html">💻 Разработчик</a></li>
+        <li><a class="menu__item" href="booking.html">📅 Забронировать</a></li>
+        <li><a class="menu__item" href="auth.html">🔑 Войти / Регистрация</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="home-hero" id="home">
+  <div class="home-hero-bg" style="background-image: url('Images/spec.jpg');"></div>
+  <div class="home-hero-overlay"></div>
+  <div class="hero-particles">
+    <span class="particle" style="top:12%;left:8%;animation-delay:0s;animation-duration:5s">🍜</span>
+    <span class="particle" style="top:20%;left:80%;animation-delay:.8s;animation-duration:6.5s">🌮</span>
+    <span class="particle" style="top:66%;left:6%;animation-delay:1.4s;animation-duration:5.5s">🍷</span>
+    <span class="particle" style="top:75%;left:83%;animation-delay:.3s;animation-duration:7s">🫖</span>
+    <span class="particle" style="top:42%;left:89%;animation-delay:2s;animation-duration:6s">🍝</span>
+    <span class="particle" style="top:52%;left:3%;animation-delay:1s;animation-duration:8s">🥘</span>
+    <span class="particle" style="top:8%;left:55%;animation-delay:.5s;animation-duration:5.8s">🍣</span>
+    <span class="particle" style="top:83%;left:46%;animation-delay:1.8s;animation-duration:6.2s">🧆</span>
+  </div>
+  <div class="container">
+    <div class="home-hero-content">
+      <div class="hero-pill">🌍&nbsp;&nbsp;Исследуем мир через еду</div>
+      <h1>Весь мир —<br>в его <em>вкусах</em></h1>
+      <p>Гастрономические путешествия — это не просто еда. Это язык, история, любовь и характер каждого народа, сжатые до одного&nbsp;укуса.</p>
+      <div class="hero-cta">
+        <a href="destinations.html" class="btn btn-primary">Начать путешествие &rarr;</a>
+        <a href="story.html" class="btn btn-outline">&#9654;&nbsp; Смотреть истории</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">47</div><div class="stat-label">стран</div></div>
+        <div class="stat-item"><div class="stat-num">320+</div><div class="stat-label">блюд изучено</div></div>
+        <div class="stat-item"><div class="stat-num">12к</div><div class="stat-label">путешественников</div></div>
+        <div class="stat-item"><div class="stat-num">98%</div><div class="stat-label">возвращаются</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Листайте вниз</span><div class="scroll-arrow">↓</div></div>
+</section>
+
+<section class="section destinations" id="destinations">
+  <div class="container">
+    <div class="dest-header">
+      <div><span class="section-label">куда ехать есть</span><h2 class="section-title">Гастрономические <em>столицы</em> мира</h2></div>
+      <a href="destinations.html" class="btn btn-ghost">Все 47 направлений &rarr;</a>
+    </div>
+    <div class="dest-grid">
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/spec.jpg" alt="Osaka" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Уличная еда</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍜</div><div class="dest-city">Осака</div><div class="dest-country">Япония</div><div class="dest-desc">Мировая столица уличной еды: такояки, окономияки, рамен на каждом углу.</div><div class="dest-meta"><span class="dest-price">$$</span><span class="dest-time">Март – Май</span></div><div class="dest-tags"><span class="dest-dish">Такояки</span><span class="dest-dish">Окономияки</span><span class="dest-dish">Рамен</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/mexic.jpg" alt="Oaxaca" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Авторская кухня</div><div class="dest-rating">★ 4.8</div><div class="dest-body"><div class="dest-emoji">🌮</div><div class="dest-city">Оахака</div><div class="dest-country">Мексика</div><div class="dest-desc">Родина шоколада, мескаля и семи видов моле.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Окт – Янв</span></div><div class="dest-tags"><span class="dest-dish">Тлаюда</span><span class="dest-dish">Моле негро</span><span class="dest-dish">Тасахо</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/night.jpg" alt="Marrakesh" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Специи & Пряности</div><div class="dest-rating">★ 4.7</div><div class="dest-body"><div class="dest-emoji">🫖</div><div class="dest-city">Марракеш</div><div class="dest-country">Марокко</div><div class="dest-desc">Джемаа-эль-Фна — живой театр еды.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Сент – Нояб</span></div><div class="dest-tags"><span class="dest-dish">Таджин</span><span class="dest-dish">Кускус</span><span class="dest-dish">Пастилья</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/pasta.jpg" alt="Bologna" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">La Grassa</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍝</div><div class="dest-city">Болонья</div><div class="dest-country">Италия</div><div class="dest-desc">Жирная, сытная, гордая. Настоящий болоньезе.</div><div class="dest-meta"><span class="dest-price">$$$</span><span class="dest-time">Апр – Июнь</span></div><div class="dest-tags"><span class="dest-dish">Тальятелле</span><span class="dest-dish">Тортеллини</span><span class="dest-dish">Мортаделла</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/vietnam.jpg" alt="Vietnam" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Fusion & Традиции</div><div class="dest-rating">★ 4.8</div><div class="dest-body"><div class="dest-emoji">🍲</div><div class="dest-city">Хойан</div><div class="dest-country">Вьетнам</div><div class="dest-desc">Кулинарный перекрёсток Азии. Cao Lầu.</div><div class="dest-meta"><span class="dest-price">$</span><span class="dest-time">Фев – Апр</span></div><div class="dest-tags"><span class="dest-dish">Cao Lầu</span><span class="dest-dish">Белая роза</span><span class="dest-dish">Ком Га</span></div></div></a>
+      <a class="dest-card" href="destinations.html"><img class="dest-card-img" src="Images/grusin.jpg" alt="Georgia" loading="lazy"><div class="dest-card-overlay"></div><div class="dest-tag">Вино & Застолье</div><div class="dest-rating">★ 4.9</div><div class="dest-body"><div class="dest-emoji">🍷</div><div class="dest-city">Тбилиси</div><div class="dest-country">Грузия</div><div class="dest-desc">Колыбель виноделия. Супра — многочасовое застолье.</div><div class="dest-meta"><span class="dest-price">$$</span><span class="dest-time">Май – Окт</span></div><div class="dest-tags"><span class="dest-dish">Хинкали</span><span class="dest-dish">Хачапури</span><span class="dest-dish">Мцвади</span></div></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="section philosophy" id="about">
+  <div class="container">
+    <div class="philosophy-grid">
+      <div class="philo-images">
+        <img class="philo-img-main" src="Images/filosof.jpg" alt="Food world map" loading="lazy">
+        <img class="philo-img-secondary" src="Images/sovet.jpg" alt="Traditional cooking" loading="lazy">
+        <div class="philo-badge"><div class="philo-badge-num">320+</div><div class="philo-badge-label">изученных блюд</div></div>
+      </div>
+      <div class="philo-text">
+        <span class="section-label">наша философия</span>
+        <h2 class="section-title">Еда — самый <em>честный</em><br>рассказ о народе</h2>
+        <div class="philo-points">
+          <div class="philo-point"><div class="philo-icon">🧭</div><div><h4>Маршруты через кухни</h4><p>Мы строим маршруты не от аэропорта к гостинице, а от рынка к рынку.</p></div></div>
+          <div class="philo-point"><div class="philo-icon">🤝</div><div><h4>Люди, а не рестораны</h4><p>Лучшие блюда мира готовят не шеф-повара, а мамы и бабушки.</p></div></div>
+          <div class="philo-point"><div class="philo-icon">🌱</div><div><h4>Осознанное потребление</h4><p>Мы поддерживаем местных производителей и сезонные продукты.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section experiences" id="experiences">
+  <div class="container">
+    <div class="exp-header"><span class="section-label">что вас ждёт</span><h2 class="section-title">Форматы <em>гастро-опыта</em></h2></div>
+    <div class="exp-grid">
+      <a class="exp-card c1" href="booking.html"><div class="exp-emoji">🏪</div><h3>Рыночные туры на рассвете</h3><p>Встречайте утро с местными торговцами. Узнайте, как выбирать манго на ощупь.</p><div class="exp-footer"><span class="exp-duration">⏱ 3–4 часа</span><span class="exp-link">Забронировать →</span></div></a>
+      <a class="exp-card c2" href="booking.html"><div class="exp-emoji">👵</div><h3>Мастер-классы у бабушек</h3><p>Самые честные рецепты — те, что передаются без книг.</p><div class="exp-footer"><span class="exp-duration">⏱ 5–6 часов</span><span class="exp-link">Забронировать →</span></div></a>
+      <a class="exp-card c3" href="booking.html"><div class="exp-emoji">🍷</div><h3>Винные & Пивные погреба</h3><p>От квеври в Кахетии до баварских пивоварен.</p><div class="exp-footer"><span class="exp-duration">⏱ 2–3 часа</span><span class="exp-link">Забронировать →</span></div></a>
+      <a class="exp-card c4" href="booking.html"><div class="exp-emoji">🌶️</div><h3>Охота за специями</h3><p>Старые базары Стамбула, Марракеша, Дели.</p><div class="exp-footer"><span class="exp-duration">⏱ 2–4 часа</span><span class="exp-link">Забронировать →</span></div></a>
+      <a class="exp-card c5" href="booking.html"><div class="exp-emoji">🎣</div><h3>Фермерские & Рыбацкие дни</h3><p>Поймайте рыбу с норвежскими рыбаками на рассвете.</p><div class="exp-footer"><span class="exp-duration">⏱ Весь день</span><span class="exp-link">Забронировать →</span></div></a>
+      <a class="exp-card c6" href="booking.html"><div class="exp-emoji">🍜</div><h3>Уличный фуд-марафон</h3><p>10 блюд, 10 кварталов, один вечер.</p><div class="exp-footer"><span class="exp-duration">⏱ 4–5 часов</span><span class="exp-link">Забронировать →</span></div></a>
+    </div>
+  </div>
+</section>
+
+<div class="food-strip">
+  <div class="strip-track">
+    <div class="strip-item"><span style="font-size:1.5rem">🍣</span><div><div class="strip-dish">Суши</div><div class="strip-country">Япония</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🌮</span><div><div class="strip-dish">Такос</div><div class="strip-country">Мексика</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🍝</span><div><div class="strip-dish">Карбонара</div><div class="strip-country">Италия</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🫕</span><div><div class="strip-dish">Таджин</div><div class="strip-country">Марокко</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🥟</span><div><div class="strip-dish">Хинкали</div><div class="strip-country">Грузия</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🍲</span><div><div class="strip-dish">Фо Бо</div><div class="strip-country">Вьетнам</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🥘</span><div><div class="strip-dish">Паэлья</div><div class="strip-country">Испания</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🍛</span><div><div class="strip-dish">Масала</div><div class="strip-country">Индия</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🥐</span><div><div class="strip-dish">Круассан</div><div class="strip-country">Франция</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🧆</span><div><div class="strip-dish">Фалафель</div><div class="strip-country">Израиль</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🍜</span><div><div class="strip-dish">Pad Thai</div><div class="strip-country">Таиланд</div></div></div>
+    <div class="strip-item"><span style="font-size:1.5rem">🥩</span><div><div class="strip-dish">Асадо</div><div class="strip-country">Аргентина</div></div></div>
+  </div>
+</div>
+
+<section class="section tips" id="tips">
+  <div class="container">
+    <div class="tips-grid">
+      <div class="tips-left">
+        <span class="section-label">практическое</span>
+        <h2 class="section-title">6 правил <em>гастронавта</em></h2>
+        <p>Правила, которые мы выработали за годы поедания по всему миру.</p>
+        <img class="tips-img" src="Images/sovet.jpg" alt="Street food India" loading="lazy">
+      </div>
+      <div class="tips-list">
+        <div class="tip-item"><span class="tip-emoji">🕐</span><div><h4>Правильное время</h4><p>Лучшие блюда — до 10 утра и после 20 вечера.</p></div></div>
+        <div class="tip-item"><span class="tip-emoji">🗣️</span><div><h4>Язык еды</h4><p>Выучите 5 слов на местном языке про еду.</p></div></div>
+        <div class="tip-item"><span class="tip-emoji">💵</span><div><h4>Наличные всегда</h4><p>Лучшие едальни не принимают карты.</p></div></div>
+        <div class="tip-item"><span class="tip-emoji">📍</span><div><h4>Очередь — знак качества</h4><p>Если стоит очередь из местных — это знак.</p></div></div>
+        <div class="tip-item"><span class="tip-emoji">🤢</span><div><h4>Адаптируйте желудок</h4><p>Начинайте с малых порций.</p></div></div>
+        <div class="tip-item"><span class="tip-emoji">📷</span><div><h4>Спрашивайте разрешения</h4><p>Прежде чем снимать — спросите.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews" id="reviews">
+  <div class="container">
+    <div class="reviews-header">
+      <span class="section-label">истории наших</span>
+      <h2 class="section-title"><em>Гастронавты</em> говорят</h2>
+      <p style="margin-top:12px;font-size:.9rem;color:var(--muted);"><a href="story.html" style="color:var(--gold);font-weight:500;">Читать все истории →</a></p>
+    </div>
+    <div class="reviews-grid">
+      <a class="review-card" href="story.html"><div class="review-quote">&ldquo;</div><p class="review-text">Тур по рынкам Стамбула изменил моё отношение к путешествиям навсегда.</p><div class="review-footer"><div class="review-avatar">👩‍🦱</div><div><div class="review-name">Анна К.</div><div class="review-city">Москва</div></div><div class="review-stars"><div class="stars">★★★★★</div><div class="review-dest">Стамбул, Турция</div></div></div></a>
+      <a class="review-card" href="story.html"><div class="review-quote">&ldquo;</div><p class="review-text">Урок приготовления хинкали с местной семьёй в Тбилиси — лучшее, что я делал.</p><div class="review-footer"><div class="review-avatar">👨‍🍳</div><div><div class="review-name">Дмитрий В.</div><div class="review-city">Санкт-Петербург</div></div><div class="review-stars"><div class="stars">★★★★★</div><div class="review-dest">Тбилиси, Грузия</div></div></div></a>
+      <a class="review-card" href="story.html"><div class="review-quote">&ldquo;</div><p class="review-text">Гастро-тур по Оахаке открыл для меня мексиканскую кухню заново.</p><div class="review-footer"><div class="review-avatar">👩‍💼</div><div><div class="review-name">Мария Л.</div><div class="review-city">Екатеринбург</div></div><div class="review-stars"><div class="stars">★★★★★</div><div class="review-dest">Оахака, Мексика</div></div></div></a>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" id="newsletter">
+  <div class="container newsletter-inner">
+    <div class="newsletter-icon">📬</div>
+    <h2>Гастро-маршруты <em>в вашем письме</em></h2>
+    <p>Каждые две недели — один город, один рынок, три рецепта и пять мест, которые не найти на TripAdvisor.</p>
+    <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); document.getElementById('newsletter-form').style.display='none'; document.getElementById('newsletter-success').style.display='block';">
+      <input class="newsletter-input" type="email" placeholder="ваш@email.ru" required>
+      <button type="submit" class="btn btn-primary">Подписаться</button>
+    </form>
+    <div class="newsletter-success" id="newsletter-success">🎉 Отлично! Первый маршрут уже летит к вам на почту.</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-script">Flavour</span><span class="logo-serif">ATLAS</span></a>
+        <p>Исследуем мир через вкус. Каждый кусочек — новая история о людях и местах.</p>
+        <div class="social-links">
+          <a href="https://t.me/Nickusor" class="social-btn" target="_blank" rel="noopener noreferrer" title="Telegram">✈️</a>
+          <a href="mailto:mihakozlov2007@gmail.com" class="social-btn" title="Email">📧</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Направления</h4>
+        <ul><li><a href="destinations.html">Азия</a></li><li><a href="destinations.html">Европа</a></li><li><a href="destinations.html">Латинская Америка</a></li><li><a href="destinations.html">Ближний Восток</a></li><li><a href="destinations.html">Африка</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Форматы</h4>
+        <ul><li><a href="booking.html">Рыночные туры</a></li><li><a href="booking.html">Кулинарные классы</a></li><li><a href="booking.html">Винные туры</a></li><li><a href="booking.html">Фермерские дни</a></li><li><a href="booking.html">Уличная еда</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>О нас</h4>
+        <ul><li><a href="about.html">Наша история</a></li><li><a href="about.html">Команда</a></li><li><a href="story.html">Блог</a></li><li><a href="booking.html">Бронирование</a></li><li><a href="auth.html">Войти</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links-row">
+        <a href="https://www.bartc.by" target="_blank" rel="noopener noreferrer">🏫 Политехнический колледж</a>
+        <span>·</span>
+        <a href="sitemap.html">🗺️ Карта сайта (SiteMap)</a>
+        <span>·</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <span>·</span>
+        <a href="developer.html">Разработчик</a>
+      </div>
+      <div class="footer-links-row">
+        <span class="footer-copy">© 2026 Flavour Atlas. Сделано с 🧡 и острой едой.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
